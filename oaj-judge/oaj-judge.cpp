@@ -2,9 +2,12 @@
 //
 
 #include <iostream>
+#include "tcpserver.h"
 
 int main()
 {
+    auto server = OAJ::Communication::TcpServer{};
+    server.start("0");
     std::cout << "Hello World!\n";
 }
 

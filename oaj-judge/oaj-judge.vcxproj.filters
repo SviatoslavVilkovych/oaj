@@ -18,5 +18,19 @@
     <ClCompile Include="oaj-judge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tcpserver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\applicationmessages.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tcpserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="applicationmessages.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

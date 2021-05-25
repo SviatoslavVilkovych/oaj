@@ -7,12 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using OAJ.WebService.Internal.Communication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace oaj_webservice
+namespace OAJ.WebService
 {
     public class Startup
     {
@@ -26,7 +27,7 @@ namespace oaj_webservice
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddSingleton<IJudgeService, JudgeService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

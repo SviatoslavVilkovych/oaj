@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace oaj_webservice
+namespace OAJ.WebService
 {
     public class Program
     {

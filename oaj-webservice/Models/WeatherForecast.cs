@@ -1,6 +1,6 @@
 using System;
 
-namespace oaj_webservice
+namespace OAJ.WebService.Models
 {
     public class WeatherForecast
     {

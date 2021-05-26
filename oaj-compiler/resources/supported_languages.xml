@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<languages>
+  <l code="Cpp">g++ {0}</l>
+  <l code="C">gcc {0}</l>
+</languages>

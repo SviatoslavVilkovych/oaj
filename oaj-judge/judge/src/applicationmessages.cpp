@@ -1,4 +1,4 @@
-#include "..\applicationmessages.h"
+#include "judge\applicationmessages.h"
 
 std::string OAJ::ApplicationMessages::getPortNumberMessage(int port)
 {

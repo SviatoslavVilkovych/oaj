@@ -2,10 +2,12 @@
 //
 
 #include <iostream>
-#include "tcpserver.h"
+#include "judge\tcpserver.h"
+#include "compiler\compiler.h"
 
 int main()
 {
+    auto compiler = OAJ::Compiler::Compiler("C:\\Users\\User\\Desktop\\oaj\\oaj-compiler\\resources\\supported_languages.xml");
     auto server = OAJ::Communication::TcpServer{};
     server.start("0");
     std::cout << "Hello World!\n";

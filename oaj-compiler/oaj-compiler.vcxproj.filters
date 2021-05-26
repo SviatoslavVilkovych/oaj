@@ -15,22 +15,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="judge\src\oaj-judge.cpp">
+    <ClInclude Include="compiler\framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler\compiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\tinyxml2\tinyxml2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="compiler\src\compiler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="judge\src\tcpserver.cpp">
+    <ClCompile Include="compiler\src\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="judge\src\applicationmessages.cpp">
+    <ClCompile Include="dependencies\tinyxml2\src\tinyxml2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="judge\tcpserver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="judge\applicationmessages.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <Xml Include="resources\supported_languages.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

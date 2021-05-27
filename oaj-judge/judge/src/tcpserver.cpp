@@ -1,4 +1,4 @@
-#include "judge\tcpserver.h"
+#include "judge/tcpserver.h"
 #undef UNICODE
 
 #define WIN32_LEAN_AND_MEAN
@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "judge\applicationmessages.h"
+#include "judge/applicationmessages.h"
 
 // Need to link with Ws2_32.lib
 #pragma comment (lib, "Ws2_32.lib")

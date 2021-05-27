@@ -21,9 +21,7 @@ must not be misrepresented as being the original software.
 distribution.
 */
 
-#include "dependencies\tinyxml2\tinyxml2.h"
-// This preprocessor header is not part of original tinyxml2 library.
-#include "compiler\pch.h"
+#include "dependencies/tinyxml2/tinyxml2.h"
 
 #include <new>		// yes, this one new style header, is in the Android SDK.
 #if defined(ANDROID_NDK) || defined(__BORLANDC__) || defined(__QNXNTO__)

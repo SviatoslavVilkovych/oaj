@@ -1,14 +1,19 @@
 #pragma once
-
-#include "compiler\pch.h"
+#include <map>
+#include <string>
 
 namespace OAJ::Compiler
 {
 	class Compiler
 	{
-		std::map<std::string, std::string> m_languageToLanguageExpression;
+	private:
+		std::map<std::string, std::pair<std::string, std::string>> m_languageToLanguageExpression;
+		
+		// Writes program to file with appopriate extension.
+		auto writeProgramToTempFile(const std::string& ext, const std::wstring& program) -> std::wstring;
+		auto removeTempFile(const std::wstring& tempFileName) -> bool;
 	public:
 		Compiler(const char* filename);
-		auto compile(std::string languageName, const std::string& program) -> std::string;
+		auto compile(const std::string& languageName, const std::wstring& program) -> std::wstring;
 	};
 }

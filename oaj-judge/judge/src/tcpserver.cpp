@@ -16,22 +16,22 @@
 
 #define DEFAULT_BUFLEN 512
 
-auto OAJ::Communication::TcpServer::logPort() -> void
+auto OAJ::Judge::Communication::TcpServer::logPort() -> void
 {
     struct sockaddr_in sin;
     auto len = socklen_t{ sizeof(sin) };
     if (getsockname(m_listenSocket, (struct sockaddr*)&sin, &len) != -1)
-        std::cout << OAJ::ApplicationMessages::getPortNumberMessage(ntohs(sin.sin_port));
+        std::cout << OAJ::Judge::ApplicationMessages::getPortNumberMessage(ntohs(sin.sin_port));
 }
 
-auto OAJ::Communication::TcpServer::closeAfterFailedOperation(const std::string& operationName, int lastError) -> int
+auto OAJ::Judge::Communication::TcpServer::closeAfterFailedOperation(const std::string& operationName, int lastError) -> int
 {
     std::cout << operationName << " failed with error: " << lastError << "\n";
     WSACleanup();
     return 1;
 }
 
-auto OAJ::Communication::TcpServer::start(PCSTR port) -> int
+auto OAJ::Judge::Communication::TcpServer::start(PCSTR port) -> int
 {
     WSADATA wsaData;
 
@@ -107,7 +107,7 @@ auto OAJ::Communication::TcpServer::start(PCSTR port) -> int
     return 0;
 }
 
-auto OAJ::Communication::TcpServer::stop() -> int
+auto OAJ::Judge::Communication::TcpServer::stop() -> int
 {
     // shutdown the connection since we're done
     m_iResult = shutdown(m_clientSocket, SD_SEND);

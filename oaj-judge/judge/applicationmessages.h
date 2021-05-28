@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-namespace OAJ
+namespace OAJ::Judge
 {
 	class ApplicationMessages
 	{

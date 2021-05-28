@@ -94,13 +94,17 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Users\User\Desktop\oaj\oaj-compiler;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)oaj-compiler;$(SolutionDir)oaj-external-libraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(SolutionDir)oaj-external-libraries\_libraries\debug\libexecstream.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -125,16 +129,23 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)oaj-compiler;$(SolutionDir)oaj-external-libraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>$(SolutionDir)oaj-external-libraries\_libraries\debug\libexecstream.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -157,13 +168,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="compiler\compiler.h" />
-    <ClInclude Include="dependencies\tinyxml2\tinyxml2.h" />
+    <ClInclude Include="helpers\execstreamwrapper.h" />
     <ClInclude Include="helpers\stringconverter.h" />
+    <ClInclude Include="helpers\workingpathmanipulator.h" />
+    <ClInclude Include="models\languagedescriptor.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dependencies\tinyxml2\src\tinyxml2.cpp" />
     <ClCompile Include="compiler\src\compiler.cpp" />
+    <ClCompile Include="helpers\src\execstreamwrapper.cpp" />
     <ClCompile Include="helpers\src\stringconverter.cpp" />
+    <ClCompile Include="helpers\src\workingpathmanipulator.cpp" />
+    <ClCompile Include="models\src\languagedescriptor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="resources\supported_languages.xml" />

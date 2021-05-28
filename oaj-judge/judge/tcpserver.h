@@ -2,7 +2,7 @@
 #include <ws2tcpip.h>
 #include <string>
 
-namespace OAJ::Communication
+namespace OAJ::Judge::Communication
 {
 	class TcpServer
 	{

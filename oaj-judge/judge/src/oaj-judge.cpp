@@ -1,17 +1,17 @@
-// oaj-judge.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-#include <iostream>
 #include "judge/tcpserver.h"
 #include "compiler/compiler.h"
 
+#include <iostream>
+
 int main()
 {
-    auto compiler = OAJ::Compiler::Compiler("C:\\Users\\User\\Desktop\\oaj\\oaj-compiler\\resources\\supported_languages.xml");
-    compiler.compile("Cpp", L"#include <iostream>\nusing namespace std;\nint main()\n{\nstd::cout << \"Hello G++!\";\nreturn 1;\n}");
-    auto server = OAJ::Communication::TcpServer{};
-    server.start("0");
-    std::cout << "Hello World!\n";
+	auto compiler = OAJ::Compiler::Compiler("C:\\Users\\User\\Desktop\\oaj\\oaj-compiler\\resources\\supported_languages.xml");
+	compiler.process("Cpp", L"#include <iostream>\nusing namespace std;\nint main()\n{\nstd::cout << \"Hello G++!\";\nreturn 1;\n}");
+	auto server = OAJ::Judge::Communication::TcpServer{};
+	server.start("0");
+	std::cout << "Hello World!\n";
+
+	return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

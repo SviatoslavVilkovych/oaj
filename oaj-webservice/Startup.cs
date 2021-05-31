@@ -10,7 +10,9 @@ using Microsoft.OpenApi.Models;
 using OAJ.WebService.Internal.Communication;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace OAJ.WebService
@@ -31,7 +33,29 @@ namespace OAJ.WebService
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "oaj_webservice", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Online Automatic Judge System Webservice API",
+                    Description = "An API that provides CRUD operations for tasks that require automatic check. " +
+                    "This can be programming tasks, long tasks, etc.",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Sviatoslav Vilkovych",
+                        Email = "sviatoslav.vilkovych.pm.2015@lpnu.ua",
+                        Url = new Uri("https://sviatoslavvilkovych.github.io"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under MIT License",
+                        Url = new Uri("https://github.com/SviatoslavVilkovych/oaj/blob/main/LICENSE"),
+                    }
+                });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
         }
 
@@ -42,7 +66,7 @@ namespace OAJ.WebService
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "oaj_webservice v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Online Automatic Judge Systeam v1"));
             }
 
             app.UseHttpsRedirection();

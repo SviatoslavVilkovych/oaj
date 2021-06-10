@@ -56,22 +56,23 @@ auto OAJ::Compiler::Compiler::writeProgramToTempFile(const std::string& extensio
 
 auto OAJ::Compiler::Compiler::removeTempFile(const std::wstring& tempFileName) -> bool
 {
-	return std::filesystem::remove(tempFileName);
+	return std::filesystem::remove_all(tempFileName);
 }
 
 auto OAJ::Compiler::Compiler::compileAndGetOutput(const std::wstring& fileName, const std::string& program, const std::string& extension) -> std::pair<std::string, std::string>
 {
 	// Set arguments to relative: "folder\folder.cpp" instead of using WorkingPathManipulator
 	// std::filesystem::create_directory(path);
-	//
 	auto arguments = OAJ::Compiler::Helpers::StringConverter::from_wstring(fileName) + extension;
 	return OAJ::Compiler::Helpers::ExecStreamWrapper::execute(program, arguments);
 }
 
 auto OAJ::Compiler::Compiler::runAndGetOutput(const std::wstring& fileName, const std::string& callableExtension) -> std::pair<std::string, std::string>
 {
-	auto callableName = OAJ::Compiler::Helpers::StringConverter::from_wstring(fileName) + callableExtension;
-	auto outputAndErrors = OAJ::Compiler::Helpers::ExecStreamWrapper::execute(callableName, std::string{});
+	auto workingDir = std::filesystem::path{ OAJ::Compiler::Helpers::StringConverter::from_wstring(OAJ::Compiler::Helpers::WorkingPathManipulator::retrievePath()) };
+	// #TODO: For MVP we use compiler default-generated name.
+	auto callableName = workingDir / (std::string{ "a" } + callableExtension);
+	auto outputAndErrors = OAJ::Compiler::Helpers::ExecStreamWrapper::execute(callableName.string(), std::string{});
 	OAJ::Compiler::Helpers::WorkingPathManipulator::releasePath();
 	return outputAndErrors;
 }

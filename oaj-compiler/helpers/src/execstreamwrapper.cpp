@@ -1,6 +1,7 @@
 #include "helpers/execstreamwrapper.h"
 
 #include "libexecstream/exec-stream.h"
+
 auto OAJ::Compiler::Helpers::ExecStreamWrapper::execute(const std::string& program, const std::string& arguments)->std::pair<std::string, std::string>
 {
 	auto output = std::string{}, errors = std::string{};
@@ -14,6 +15,9 @@ auto OAJ::Compiler::Helpers::ExecStreamWrapper::execute(const std::string& progr
 	while (std::getline(es.err(), temp_errors).good()) {
 		errors += ('\n' + temp_errors);
 	}
+
+	output += temp_output;
+	errors += temp_errors;
 
 	es.close();
 	return std::pair{ output, errors };

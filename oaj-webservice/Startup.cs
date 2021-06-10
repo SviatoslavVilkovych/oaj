@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using OAJ.WebService.Internal.Communication;
+using OAJ.WebService.Internal.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -56,6 +57,10 @@ namespace OAJ.WebService
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+            });
+            services.AddMvcCore(s =>
+            {
+                s.UseGeneralRoutePrefix("oaj/api/{version:apiversion}");
             });
         }
 

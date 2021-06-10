@@ -2,10 +2,7 @@
 using Microsoft.Extensions.Logging;
 using OAJ.WebService.Internal.Communication;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OAJ.WebService.Controllers
 {

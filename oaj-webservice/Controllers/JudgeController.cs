@@ -15,8 +15,8 @@ namespace OAJ.WebService.Controllers
             JudgeServiceInstance = judgeService;
         }
 
-        [HttpGet]
-        public IActionResult Get([FromQuery]string input)
+        [HttpPost]
+        public IActionResult Post([FromBody]string input)
         {
             return Ok(JudgeServiceInstance.GetTest(input));
         }

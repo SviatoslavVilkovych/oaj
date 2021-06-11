@@ -10,10 +10,10 @@ auto OAJ::Compiler::Helpers::ExecStreamWrapper::execute(const std::string& progr
 	es.start(program, arguments);
 	auto temp_output = std::string{}, temp_errors = std::string{};
 	while (std::getline(es.out(), temp_output).good()) {
-		output += ('\n' + temp_output);
+		output += (temp_output + '\n');
 	}
 	while (std::getline(es.err(), temp_errors).good()) {
-		errors += ('\n' + temp_errors);
+		errors += (temp_errors + '\n');
 	}
 
 	output += temp_output;

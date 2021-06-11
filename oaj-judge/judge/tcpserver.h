@@ -16,7 +16,7 @@ namespace OAJ::Judge::Communication
 		auto logPort() -> void;
 		auto closeAfterFailedOperation(const std::string& operationName, int lastError) -> int;
 	public:
-		auto start(PCSTR port) -> int;
+		auto start(PCSTR port = "0") -> int;
 		auto stop() -> int;
 	};
 }

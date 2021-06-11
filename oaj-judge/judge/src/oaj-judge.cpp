@@ -2,15 +2,19 @@
 #include "compiler/compiler.h"
 
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 int main()
 {
-	auto compiler = OAJ::Compiler::Compiler("C:\\Users\\User\\Desktop\\oaj\\oaj-compiler\\resources\\supported_languages.xml");
-	auto results = compiler.process("Cpp", L"#include <iostream>\nusing namespace std;\nint main()\n{\nstd::cout << \"Hello G++!\";\nreturn 1;\n}");
 	auto server = OAJ::Judge::Communication::TcpServer{};
-	server.start("0");
-	std::cout << "Hello World!\n";
-
+	auto compiler = OAJ::Compiler::Compiler("C:\\Users\\User\\Desktop\\oaj\\oaj-compiler\\resources\\supported_languages.xml");
+	auto results = compiler.process("Cpp", L"#include <iostream>\nusing namespace std;\nint main()\n{\nstd::cout << \"Hello G++!\\nBye G++!\";\nreturn 1;\n}");
+	std::cout << "Output:\n" << results.first;
+	std::cout << "\nErrors:\n" << results.second;
+	server.start();
+	std::this_thread::sleep_for(std::chrono::seconds(20));
+	server.stop();
 	return 0;
 }
 

@@ -60,8 +60,9 @@ namespace OAJ.WebService
             });
             services.AddMvcCore(s =>
             {
-                s.UseGeneralRoutePrefix("oaj/api/{version:apiversion}");
+                s.UseGeneralRoutePrefix("oaj/api/v{version:apiversion}");
             });
+            services.AddApiVersioning(o => o.ReportApiVersions = true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

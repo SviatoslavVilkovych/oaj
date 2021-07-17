@@ -1,5 +1,4 @@
 #include "judge/tcpserver.h"
-#include "compiler/compiler.h"
 
 #include <iostream>
 #include <chrono>
@@ -8,12 +7,8 @@
 int main()
 {
 	auto server = OAJ::Judge::Communication::TcpServer{};
-	auto compiler = OAJ::Compiler::Compiler("C:\\Users\\User\\Desktop\\oaj\\oaj-compiler\\resources\\supported_languages.xml");
-	auto results = compiler.process("Cpp", L"#include <iostream>\nusing namespace std;\nint main()\n{\nstd::cout << \"Hello G++!\\nBye G++!\";\nreturn 1;\n}");
-	std::cout << "Output:\n" << results.first;
-	std::cout << "\nErrors:\n" << results.second;
 	server.start();
-	std::this_thread::sleep_for(std::chrono::seconds(20));
+	std::this_thread::sleep_for(std::chrono::seconds(500));
 	server.stop();
 	return 0;
 }

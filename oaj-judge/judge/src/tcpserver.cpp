@@ -1,4 +1,7 @@
 #include "judge/tcpserver.h"
+
+#include "compiler/compiler.h"
+
 #undef UNICODE
 
 #define WIN32_LEAN_AND_MEAN
@@ -14,7 +17,7 @@
 // Need to link with Ws2_32.lib
 #pragma comment (lib, "Ws2_32.lib")
 
-#define DEFAULT_BUFLEN 512
+#define DEFAULT_BUFLEN 1024
 
 auto OAJ::Judge::Communication::TcpServer::logPort() -> void
 {
@@ -84,10 +87,15 @@ auto OAJ::Judge::Communication::TcpServer::start(PCSTR port) -> int
     closesocket(m_listenSocket);
 
     // Receive until the peer shuts down the connection
+    recvbuflen = 1;
+    auto twice = 0;
+    auto once = false;
+    auto results = std::pair<std::string, std::string>{};
     do {
         m_iResult = recv(m_clientSocket, recvbuf, recvbuflen, 0);
         if (m_iResult > 0) {
-            printf("Bytes received: %d\n", m_iResult);
+            printf("\nBytes received: %d\n", m_iResult);
+            recvbuflen = DEFAULT_BUFLEN;
 
             // Echo the buffer back to the sender
             iSendResult = send(m_clientSocket, recvbuf, m_iResult, 0);
@@ -95,12 +103,30 @@ auto OAJ::Judge::Communication::TcpServer::start(PCSTR port) -> int
             if (iSendResult == SOCKET_ERROR)
                 return closeAfterFailedOperation("send", WSAGetLastError());
 
-            printf("Bytes sent: %d\n", iSendResult);
+            //
+            if (!once)
+            {
+                once = true;
+                auto compiler = OAJ::Compiler::Compiler("C:\\Users\\User\\Desktop\\oaj\\oaj-compiler\\resources\\supported_languages.xml");
+                results = compiler.process("Cpp", L"#include <iostream>\nusing namespace std;\nint main()\n{\nstd::cout << \"Hello G++!\\nBye G++!\";\nreturn 1;\n}");
+            }
+            if (twice % 2)
+            {
+                std::cout << "Output:\n" << results.first;
+                std::cout << "\nErrors:\n" << results.second;
+            }
+            ++twice;
+            //
+            //printf("Bytes sent: %d\n", iSendResult);
         }
         else if (m_iResult == 0)
+        {
             printf("Connection closing...\n");
+        }
         else
-            return closeAfterFailedOperation("recv", WSAGetLastError());
+        {
+            return 1; // closeAfterFailedOperation("recv", WSAGetLastError());
+        }
 
     } while (m_iResult > 0);
 

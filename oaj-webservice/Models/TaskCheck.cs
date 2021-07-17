@@ -1,13 +1,14 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OAJ.WebService.Models
 {
-    public class TaskEntity
+    public class TaskCheck
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Language { get; set; }
         public string Program { get; set; }
-        public string Verification { get; set; }
     }
 }

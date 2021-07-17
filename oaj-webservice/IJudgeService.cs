@@ -8,8 +8,9 @@ namespace OAJ.WebService.Internal.Communication
 {
     public interface IJudgeService
     {
-        Task<string> GetTestAsync(string input);
+        Task<TaskResult> CheckTaskAsync1(Guid input);
+        Task<TaskResult> CheckTaskAsync(TaskCheck input);
 
-        Task<TaskResult> AddTaskAsync(string taskName, string language, string task);
+        Task<TaskResult> AddTaskAsync(TaskEntity task);
     }
 }

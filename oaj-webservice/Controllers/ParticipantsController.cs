@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OAJ.WebService.Internal.Communication;
+using OAJ.WebService.Models;
 using System;
+using System.Threading.Tasks;
 
 namespace OAJ.WebService.Controllers
 {
@@ -19,28 +21,25 @@ namespace OAJ.WebService.Controllers
         /// <summary>
         /// Send program to verification (this request is fire-and-forget).
         /// </summary>
-        /// <param name="taskName">Name of the task.</param>
-        /// <param name="language">Language in which program written.</param>
         /// <param name="program">Code of the program.</param>
         /// <returns>Id of the process and location where result can be found.</returns>
         [HttpPost]
         [Route("[action]")]
-        public IActionResult Send([FromRoute] string taskName, [FromQuery] string language, [FromBody] string program)
+        public async Task<IActionResult> Send([FromBody] TaskCheck program)
         {
-            throw new NotImplementedException();
+            return Accepted(await JudgeServiceInstance.CheckTaskAsync(program));
         }
 
         /// <summary>
         /// Get program result.
         /// </summary>
-        /// <param name="taskName">Name of the task.</param>
         /// <param name="id">Id of the verification.</param>
         /// <returns>Formatted result of time of execution, passed tests, etc.</returns>
         [HttpGet]
         [Route("[action]/{taskName}/{id}")]
-        public IActionResult Get([FromRoute] string taskName, [FromRoute] string id)
+        public async Task<IActionResult> Get([FromRoute] Guid id)
         {
-            throw new NotImplementedException();
+            return Ok(await JudgeServiceInstance.CheckTaskAsync1(id));
         }
 
         private readonly ILogger<ParticipantsController> _logger;

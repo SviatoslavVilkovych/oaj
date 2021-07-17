@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OAJ.WebService.Internal.Communication;
+using OAJ.WebService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,15 +23,13 @@ namespace OAJ.WebService.Controllers
         /// <summary>
         /// Adds new task to list of available tasks.
         /// </summary>
-        /// <param name="taskName">Name of the task.</param>
-        /// <param name="language">Allowed languages.</param>
         /// <param name="task">Task with required verification, limits, participants, etc.</param>
         /// <returns>Filled location with place where task stored.</returns>
         [HttpPost]
         [Route("[action]")]
-        public IActionResult Add([FromQuery] string taskName, [FromQuery] string language, [FromBody] string task)
+        public async Task<IActionResult> Add([FromBody] TaskEntity task)
         {
-            throw new NotImplementedException();
+            return Ok(await JudgeServiceInstance.AddTaskAsync(task));
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OAJ.WebService.Internal.Communication;
+using System;
 
 namespace OAJ.WebService.Controllers
 {
@@ -18,7 +19,7 @@ namespace OAJ.WebService.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]string input)
         {
-            return Ok(JudgeServiceInstance.GetTest(input));
+            throw new NotImplementedException();
         }
         private readonly ILogger<JudgeController> _logger;
         private readonly IJudgeService JudgeServiceInstance;
